@@ -1,64 +1,59 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'components/tabItem.dart';
+import 'views/home/index.dart';
+import 'views/subject/index.dart';
+import 'views/group/index.dart';
+import 'views/mall/index.dart';
+import 'views/me/index.dart';
+
 void main () => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.green,
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent
+      ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('我是标题')
-        ),
-        body: ContentWidget()
+        bottomNavigationBar: BottomNavigationBar(
+              currentIndex: _currentIndex,
+              type: BottomNavigationBarType.fixed,
+              items: [
+                TabItem('home', '首页'),
+                TabItem('subject', '书影音'),
+                TabItem('group', '小组'),
+                TabItem('mall', '市集'),
+                TabItem('me', '我的')
+              ],
+              onTap: (int value) {
+                setState(() {
+                  _currentIndex = value;
+                });
+              }
+          ),
+        body: IndexedStack(
+          index: _currentIndex,
+          children: <Widget>[
+            HomePage(),
+            SubjectPage(),
+            GroupPage(),
+            MallPage(),
+            MePage()
+          ],
+        )
       )
-    );
-  }
-}
-class ContentWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: ListView(
-        children: <Widget>[
-          ItemWidget.fromMap({'title': '标题1', 'tip': 'www', 'imgUrl': 'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'}),
-          ItemWidget.fromMap({'title': '标题2', 'tip': 'www', 'imgUrl': 'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'}),
-          ItemWidget.fromMap({'title': '标题3', 'tip': 'www', 'imgUrl': 'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'})
-        ],
-      ),
-    );
-  }
-}
-
-class ItemWidget extends StatelessWidget {
-  String title;
-  String tip;
-  String imageUrl;
-
-  ItemWidget({this.title, this.tip, this.imageUrl});
-
-  ItemWidget.fromMap(Map<String, Object> map) {
-    this.title = map['title'];
-    this.tip = map['tip'];
-    this.imageUrl = map['imgUrl'];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        border: Border.all()
-      ),
-      child: Column(
-        children: <Widget>[
-          Text(title, style: TextStyle(fontSize: 20)),
-          Text(tip),
-          SizedBox(height: 10),
-          Image.network(imageUrl)
-        ],
-      ),
     );
   }
 }
