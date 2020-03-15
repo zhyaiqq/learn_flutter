@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app1/components/star_rating.dart';
 
 class GroupPage extends StatelessWidget {
   @override
@@ -7,7 +8,11 @@ class GroupPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('小组'),
         ),
-        body: Text('小组')
+        body: Center(
+          child: StarRating(
+            rating: 8
+          ),
+        )
     );
   }
 }
