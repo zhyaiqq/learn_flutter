@@ -8,8 +8,9 @@ import 'package:flutter_app1/models/movie_item_modal.dart';
 
 class MovieListItem extends StatelessWidget {
   MovieItem movie;
+  int index;
 
-  MovieListItem(this.movie);
+  MovieListItem(this.movie, {this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class MovieListItem extends StatelessWidget {
         color: Colors.orangeAccent
       ),
       child: Text(
-        'NO.${movie.rank}'
+        'NO.${index + 1}'
       )
     );
   }

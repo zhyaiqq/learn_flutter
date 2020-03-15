@@ -12,7 +12,6 @@ class MovieItem {
   List<Actor> actors;
 
   MovieItem.fromMap(Map<String,  dynamic> json) {
-    print(json['rating']['average']);
     this.rank = ++counter;
     this.title = json['title'];
     this.originalTitle = json['original_title'];
