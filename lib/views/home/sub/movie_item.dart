@@ -19,16 +19,19 @@ class MovieListItem extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(width: 10, color: Colors.black12))
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          getRankWidget(),
-          SizedBox(height: 10),
-          getMovieContent(),
-          SizedBox(height: 10),
-          getOriginalTitleWidget()
-        ],
-      ),
+      child: GestureDetector(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            getRankWidget(),
+            SizedBox(height: 10),
+            getMovieContent(),
+            SizedBox(height: 10),
+            getOriginalTitleWidget()
+          ],
+        ),
+        onTap: () => Navigator.pushNamed(context, '/b'),
+      )
     );
   }
 

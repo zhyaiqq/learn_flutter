@@ -5,6 +5,7 @@ import 'views/subject/index.dart';
 import 'views/group/index.dart';
 import 'views/mall/index.dart';
 import 'views/me/index.dart';
+import 'views/detail/index.dart';
 
 void main () => runApp(MyApp());
 
@@ -53,7 +54,12 @@ class MyAppState extends State<MyApp> {
             MePage()
           ],
         )
-      )
+      ),
+      routes: <String, WidgetBuilder> {
+        '/a': (BuildContext context) => DetailPage(),
+        '/b': (BuildContext context) => DetailPage(),
+        '/c': (BuildContext context) => DetailPage()
+      }
     );
   }
 }
