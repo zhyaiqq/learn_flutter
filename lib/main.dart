@@ -3,6 +3,7 @@ import './demo/ListView.dart';
 import './demo/GridView.dart';
 import './demo/PageView.dart';
 import './demo/Sliver.dart';
+import './demo/routes.dart';
 
 void main() => runApp(AppState());
 
@@ -14,6 +15,9 @@ class AppState extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.yellow
       ),
+      routes: {
+        '/about': (BuildContext context) => RouteDemo('about')
+      },
       home: DefaultTabController(
         length: 2, 
         child:  Scaffold(
@@ -34,7 +38,7 @@ class AppState extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              GriViewDemo(),
+              ListViewDemo(),
               SliverDemo()
             ]
           ),
