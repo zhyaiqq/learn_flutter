@@ -6,6 +6,7 @@ import './demo/PageView.dart';
 import './demo/Sliver.dart';
 import './demo/routes.dart';
 import './demo/form.dart';
+import './demo/material_components.dart';
 
 void main() => runApp(AppState());
 
@@ -19,11 +20,12 @@ class AppState extends StatelessWidget {
         primaryColor: Colors.yellow,
         accentColor: Colors.blue
       ),
-      initialRoute: '/form',
+      initialRoute: '/mdc',
       routes: {
         '/': (BuildContext context) => Home(),
         '/about': (BuildContext context) => RouteDemo('about'),
-        '/form': (BuildContext context) => FormDemo()
+        '/form': (BuildContext context) => FormDemo(),
+        '/mdc': (context) => MaterialComponets(),
       }
     );
   }
