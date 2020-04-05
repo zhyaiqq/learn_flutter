@@ -11,6 +11,7 @@ import './demo/state/state_management_demo.dart';
 import './demo/stream/stream_demo.dart';
 import './demo/rxdart/rxdart_demo.dart';
 import './demo/bloc/bloc_demo.dart';
+import './demo/http/http_demo.dart';
 
 void main() => runApp(AppState());
 
@@ -24,7 +25,7 @@ class AppState extends StatelessWidget {
         primaryColor: Colors.yellow,
         accentColor: Colors.blue
       ),
-      initialRoute: '/bloc',
+      initialRoute: '/http',
       routes: {
         '/': (BuildContext context) => Home(),
         '/about': (BuildContext context) => RouteDemo('about'),
@@ -34,6 +35,7 @@ class AppState extends StatelessWidget {
         '/stream': (context) => StreamDemo(),
         '/rxdart': (context) => RxdartDemo(),
         '/bloc': (context) => BlocDemo(),
+        '/http': (context) => HttpDemo(),
       }
     );
   }

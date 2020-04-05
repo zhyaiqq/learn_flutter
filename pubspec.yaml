@@ -27,6 +27,7 @@ dependencies:
   intl: ^0.15.7
   scoped_model: ^1.0.1
   rxdart: ^0.23.1
+  http: ^0.12.0+4
 
 dev_dependencies:
   flutter_test:
