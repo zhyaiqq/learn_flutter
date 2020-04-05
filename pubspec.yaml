@@ -26,6 +26,7 @@ dependencies:
   dio: ^2.1.16
   intl: ^0.15.7
   scoped_model: ^1.0.1
+  rxdart: ^0.23.1
 
 dev_dependencies:
   flutter_test:

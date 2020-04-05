@@ -9,6 +9,7 @@ import './demo/form.dart';
 import './demo/material_components.dart';
 import './demo/state/state_management_demo.dart';
 import './demo/stream/stream_demo.dart';
+import './demo/rxdart/rxdart_demo.dart';
 
 void main() => runApp(AppState());
 
@@ -22,7 +23,7 @@ class AppState extends StatelessWidget {
         primaryColor: Colors.yellow,
         accentColor: Colors.blue
       ),
-      initialRoute: '/stream',
+      initialRoute: '/rxdart',
       routes: {
         '/': (BuildContext context) => Home(),
         '/about': (BuildContext context) => RouteDemo('about'),
@@ -30,6 +31,7 @@ class AppState extends StatelessWidget {
         '/mdc': (context) => MaterialComponets(),
         '/state': (context) => StateManagementDemo(),
         '/stream': (context) => StreamDemo(),
+        '/rxdart': (context) => RxdartDemo(),
       }
     );
   }
