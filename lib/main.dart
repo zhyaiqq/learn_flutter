@@ -1,65 +1,63 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'components/tabItem.dart';
-import 'views/home/index.dart';
-import 'views/subject/index.dart';
-import 'views/group/index.dart';
-import 'views/mall/index.dart';
-import 'views/me/index.dart';
-import 'views/detail/index.dart';
+import 'package:flutter_app1/widgets/Absorbpointer.dart';
+import 'package:flutter_app1/widgets/Animate.dart';
+import 'package:flutter_app1/widgets/DestureDetector.dart';
+import 'package:flutter_app1/widgets/Notification.dart';
 
 void main () => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   @override
-  State<StatefulWidget> createState() {
-    return MyAppState();
+  Widget build(BuildContext context) {
+    return CupertinoApp(
+        theme: CupertinoThemeData(
+          primaryColor: CupertinoColors.black,
+          barBackgroundColor: CupertinoColors.systemGreen,
+        ),
+        color: CupertinoColors.activeOrange,
+        debugShowCheckedModeBanner: false,
+      routes: {
+        '/AbsorbpointerDemo': (context) => AbsorbpointerDemo(),
+        '/NotificationRoute': (context) => NotificationRoute(),
+        '/animate': (context) => AnimateDemo(),
+        '/drag': (context) => Drag(),
+      },
+        home: Myhome()
+    );
   }
 }
 
-class MyAppState extends State<MyApp> {
-  int _currentIndex = 0;
 
+class Myhome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.green,
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('demo'),
       ),
-      home: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-              currentIndex: _currentIndex,
-              type: BottomNavigationBarType.fixed,
-              items: [
-                TabItem('home', '首页'),
-                TabItem('subject', '书影音'),
-                TabItem('group', '小组'),
-                TabItem('mall', '市集'),
-                TabItem('me', '我的')
-              ],
-              onTap: (int value) {
-                setState(() {
-                  _currentIndex = value;
-                });
-              }
-          ),
-        body: IndexedStack(
-          index: _currentIndex,
-          children: <Widget>[
-            HomePage(),
-            SubjectPage(),
-            GroupPage(),
-            MallPage(),
-            MePage()
-          ],
-        )
-      ),
-      routes: <String, WidgetBuilder> {
-        '/a': (BuildContext context) => DetailPage(),
-        '/b': (BuildContext context) => DetailPage(),
-        '/c': (BuildContext context) => DetailPage()
-      }
+      child: ListView(
+        children: [
+          titleItem(context, 'IgnorePointer和IgnorePointer', '/AbsorbpointerDemo'),
+          titleItem(context, 'Notification', '/NotificationRoute'),
+          titleItem(context, '拖拽', '/drag'),
+          titleItem(context, '动画', '/animate')
+        ],
+      )
+    );
+  }
+
+  Widget titleItem (BuildContext context, String title, String route) {
+    return GestureDetector(
+        child: Container(
+          color: CupertinoColors.activeGreen.withOpacity(0.4),
+          padding: EdgeInsets.all(10),
+          margin: EdgeInsets.only(top: 15),
+          child: Text(title),
+        ),
+        onTap: () {
+          Navigator.of(context).pushNamed(route);
+        }
     );
   }
 }
